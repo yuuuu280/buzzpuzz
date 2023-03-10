@@ -10,14 +10,14 @@ const inter = Inter({ subsets: ['latin'] })
 const About: NextPage = () => {
   return (
     <div className={styles.main}>
+      <Link href="/">
+        <img src={'/logo.png'} width={'300'} height={'50'} />
+      </Link>
       <div className={styles.container}>
-        <h1>バズパズ</h1>
         <h2>ゲームのプレイ方法</h2>
-        <Link href="/">
-          タイトルへ
-        </Link>
+        <Link href="/">タイトルへ</Link>
       </div>
     </div>
   )
 }
-export default About;
+export default About

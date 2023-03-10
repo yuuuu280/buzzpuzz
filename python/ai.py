@@ -26,17 +26,16 @@ def pil2cv(image):
         new_image = cv2.cvtColor(new_image, cv2.COLOR_RGBA2BGRA)
     return new_image
 
-def shuffle(list, hole, option):
-    if (option === hole + 1 & (option % num === 0)) {
+def shuffle(list, num, hole, option):
+    # 斜めに移動しない要する
+    if ((option == hole + 1) & (option % num == 0)):
         return list
-    }
-    if (option === hole - 1 & ((option + 1) % num === 0)) {
+    if ((option == hole - 1) & ((option + 1) % num == 0)):
         return list
-    }
     if (option == hole - 1 or
-      option == hole - 3 or
+      option == hole - num or
       option == hole + 1 or
-      option == hole + 3):
+      option == hole + num):
 
     #   パズル入れ替え
         list[hole] += list[option]
@@ -46,39 +45,6 @@ def shuffle(list, hole, option):
     return list
 
 app = FastAPI()
-# アクセストークンの設定
-access_tokens="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" # @param {type:"string"}
-# モデルのインスタンス化
-model = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=access_tokens)
-images=[]
-#画像の読み込みh
-prompt = "zeebra by Claude Monet"
-# clf = pickle.load(open('model.pkl', 'rb'))
-image = model(prompt,num_inference_steps=1)["images"][0]
-img=pil2cv(image)
-h,w=img.shape[:2]
-split_x=3
-split_y=3
-#画像の分割処理
-cx=0
-cy=0
-rand = list(range(9))
-
-for a in range(100):
-    rand = shuffle(rand, rand.index(8), random.randint(0,8))
-
-for j in range(split_y):
-    for i in range(split_x):
-        split_pic=img[cy:cy+int(h/split_y),cx:cx+int(w/split_x),:]
-        # cv2.imwrite('split_pic/split_y'+str(i)+'_x'+str(j)+'.jpg',split_pic)
-        img_str = cv_to_base64(split_pic)
-        images.append('data:image/png;base64,'+img_str)
-        cx=cx+int(w/split_x)
-    cx=0
-    cy=cy+int(h/split_y)
-
-images[8]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2P4////fwAJ+wP9BUNFygAAAABJRU5ErkJggg=="
-hole = rand.index(8)
 
 app.add_middleware(
     CORSMiddleware,
@@ -88,20 +54,54 @@ app.add_middleware(
     allow_headers=["*"]       # 追記により追加
 )
 
+@app.get("/ai/{num_str}/{step_str}/{prompt}")
+async def hello(num_str, prompt, step_str):
+    step=int(step_str)
+    num = int(num_str)
+    if(num>10):
+        return{
+        "original": "",
+        "images": "",
+        "hole": "",
+        "answer": ""
+        }
+    # アクセストークンの設定
+    access_tokens="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" # @param {type:"string"}
+    # モデルのインスタンス化
+    model = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=access_tokens)
+    images=[]
+    # clf = pickle.load(open('model.pkl', 'rb'))
+    def null_safety(images, **kwargs):
+        return images, False
+    model.safety_checker = null_safety
+    image = model(prompt,num_inference_steps=step)["images"][0]
+    img=pil2cv(image)
+    h,w=img.shape[:2]
+    split_x=3
+    split_y=3
+    #画像の分割処理
+    cx=0
+    cy=0
+    rand = list(range(num*num))
 
-@app.get("/cat")
-async def hello():
+    for a in range(10000):
+        rand = shuffle(rand, num, rand.index(num*num-1), random.randint(0,num*num-1))
+    
+    for j in range(split_y):
+        for i in range(split_x):
+            split_pic=img[cy:cy+int(h/split_y),cx:cx+int(w/split_x),:]
+            # cv2.imwrite('split_pic/split_y'+str(i)+'_x'+str(j)+'.jpg',split_pic)
+            img_str = cv_to_base64(split_pic)
+            images.append('data:image/png;base64,'+img_str)
+            cx=cx+int(w/split_x)
+        cx=0
+        cy=cy+int(h/split_y)
+    
+    images[num*num-1]="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2P4////fwAJ+wP9BUNFygAAAABJRU5ErkJggg=="
+    hole = rand.index(num*num-1)
     return  {
-            "original": "originalimage",
-            "images": images,
-            "hole": hole,
-            "answer": rand
-    }
-@app.get("/ai")
-async def hello():
-    return  {
-            "original": "originalimage",
-            "images": images,
-            "hole": hole,
-            "answer": rand
-    }
+        "original": 'data:image/png;base64,'+cv_to_base64(img),
+        "images": images,
+        "hole": hole,
+        "answer": rand
+}

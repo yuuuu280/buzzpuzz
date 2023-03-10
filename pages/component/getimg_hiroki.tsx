@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import router from 'next/router'
-import { useState, useEffect, useRef, RefObject, createRef } from 'react'
+import { useState, useEffect, useRef, createRef, RefObject } from 'react'
 import { useQuery } from 'react-query'
 import styles from '@/styles/Home.module.css'
 import LoopAnimation from '../loopAnimation'
@@ -22,8 +22,10 @@ export const toBlob = (base64: string) => {
   return blob
 }
 
-const fetchPython = async (splitNum: number, step: number, prompt: string) => {
-  const res = await fetch('http://127.0.0.1:8000/ai/' + splitNum + '/' + step + '/' + prompt)
+const fetchPython = async (splitNum: number) => {
+  console.log(splitNum)
+  const res = await fetch('http://127.0.0.1:8000/cat/' + splitNum)
+  console.log(res)
   return res.json()
 }
 type CreateImageResponse = {
@@ -47,11 +49,10 @@ const checkAnswer = (fieldInfo: { x: number; y: number }[], splitNum: number) =>
 
   return true
 }
-type AiProps = { splitNum: number; step: number; prompt: string }
 
-function Ai({ splitNum, step, prompt }: AiProps) {
+function Cat({ splitNum }: { splitNum: number }) {
   const { data, isLoading, isError, error } = useQuery<CreateImageResponse>(`python${splitNum}`, () =>
-    fetchPython(splitNum, step, prompt)
+    fetchPython(splitNum)
   )
   const test = useRef(null)
   const flipList = useRef<RefObject<HTMLDivElement>[]>([])
@@ -197,4 +198,4 @@ function Ai({ splitNum, step, prompt }: AiProps) {
   )
 }
 
-export default Ai
+export default Cat

@@ -13,23 +13,27 @@ def cv_to_base64(img):
     img_str = base64.b64encode(encoded).decode("ascii")
 
     return img_str
-def shuffle(list, num, hole, option):
+def shuffle(ansList, num, hole, option):
+    hole=ansList.index(num*num-1)
     # 斜めに移動しない要する
-    if ((option == hole + 1) & (option % num == 0)):
-        return list
-    if ((option == hole - 1) & ((option + 1) % num == 0)):
-        return list
-    if (option == hole - 1 or
-      option == hole - num or
+    if ((option == hole + 1) and (option % num == 0)):
+        return ansList
+    if ((option == hole - 1) and ((option + 1) % num == 0)):
+        return ansList
+    if (
+        option == hole - 1 or
+      option == (hole - num) or
       option == hole + 1 or
-      option == hole + num):
+      option == (hole + num)
+      ):
 
     #   パズル入れ替え
-        list[hole] += list[option]
-        list[option] = list[hole] - list[option]
-        list[hole] = list[hole] - list[option]
-    
-    return list
+        swap = ansList[option]
+        ansList[option] = ansList[hole]
+        ansList[hole] = swap
+
+    return ansList
+    # ansList=[0,2,1,3]
 
 app = FastAPI()
 
@@ -45,6 +49,14 @@ app.add_middleware(
 
 @app.get("/cat/{num_str}")
 async def hello(num_str):
+    num = int(num_str)
+    if(num>10):
+        return{
+        "original": "",
+        "images": "",
+        "hole": "",
+        "answer": ""
+        }
     #画像の読み込み
     url = 'https://api.thecatapi.com/v1/images/search'
     res = requests.get(url)
@@ -56,7 +68,6 @@ async def hello(num_str):
     # img = Image.open("filename")
     h,w=img.shape[:2]
     images=[]
-    num = int(num_str)
     #n*nの計算
     split_x=num
     split_y=num
@@ -65,9 +76,13 @@ async def hello(num_str):
     cy=0
     rand = list(range(num*num))
 
-    for a in range(10000):
+    for a in range(1000):
         rand = shuffle(rand, num, rand.index(num*num-1), random.randint(0,num*num-1))
     # rand = shuffle(rand, rand.index(15), 14)
+    
+    
+    print("fi:")
+    print(rand)
 
     for j in range(split_y):
         for i in range(split_x):
