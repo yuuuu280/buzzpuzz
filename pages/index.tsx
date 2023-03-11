@@ -54,7 +54,7 @@ const Home: NextPage = () => {
           <option value="5">👹５×５</option>
         </select> */}
         <p></p>
-        <a href={'/cat?num=' + splitNum}>猫好きはこちら</a>
+        <a href={'/cat?num=' + splitNum}>猫好きはこちらaaa</a>
         <p></p>
         <a href={'/option?num=' + splitNum}>AI好きはこちら</a>
       </div>
