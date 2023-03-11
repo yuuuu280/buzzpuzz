@@ -9,10 +9,10 @@ import { useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Dropdown, Form, Select, Step, TextArea } from 'semantic-ui-react'
 import { useRouter } from 'next/router'
-import { PromptControl } from './component/Controls/PromptControl/PromptControl'
-import { promptOptions } from './component/Controls/PromptControl/data'
-import { TextareaControl } from './component/Controls/TextareaControl'
-import { SelectControl } from './component/Controls/SelectControl'
+import { PromptControl } from 'component/Controls/PromptControl/PromptControl'
+import { promptOptions } from 'component/Controls/PromptControl/data'
+import { TextareaControl } from 'component/Controls/TextareaControl'
+import { SelectControl } from 'component/Controls/SelectControl'
 
 const inter = Inter({ subsets: ['latin'] })
 

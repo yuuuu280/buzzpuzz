@@ -3,8 +3,8 @@ import router from 'next/router'
 import { useState, useEffect, useRef, createRef, RefObject } from 'react'
 import { useQuery } from 'react-query'
 import styles from '@/styles/Home.module.css'
-import LoopAnimation from '../loopAnimation'
-import loadJson from '../lf20_xvec7y03.json'
+import LoopAnimation from './LoopAnimation'
+import loadJson from 'public/animation/lf20_xvec7y03.json'
 import { css } from '@emotion/react'
 import { gsap } from 'gsap'
 
@@ -136,7 +136,6 @@ function Cat({ splitNum }: { splitNum: number }) {
 
     setFieldInfo([...fieldInfo])
 
-    // console.log(moveX, moveY)
     gsap.to(flipList.current[clickIndex].current, {
       x: holeInfo.x * pieceSize,
       y: holeInfo.y * pieceSize,
