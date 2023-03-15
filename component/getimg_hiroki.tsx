@@ -23,9 +23,7 @@ export const toBlob = (base64: string) => {
 }
 
 const fetchPython = async (splitNum: number) => {
-  console.log(splitNum)
-  const res = await fetch('http://127.0.0.1:8000/cat/' + splitNum)
-  console.log(res)
+  const res = await fetch('http://54.248.172.55:8000/cat/' + splitNum)
   return res.json()
 }
 type CreateImageResponse = {
