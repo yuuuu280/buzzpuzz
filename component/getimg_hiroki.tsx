@@ -23,7 +23,9 @@ export const toBlob = (base64: string) => {
 }
 
 const fetchPython = async (splitNum: number) => {
-  const res = await fetch('http://54.248.172.55:8000/cat/' + splitNum)
+  const res = await fetch(
+    'https://kpbdfvmn2giosldh7uellnptne0nbiqh.lambda-url.ap-northeast-1.on.aws/?num_str=' + splitNum
+  )
   return res.json()
 }
 type CreateImageResponse = {

@@ -23,7 +23,7 @@ export const toBlob = (base64: string) => {
 }
 
 const fetchPython = async (splitNum: number, step: number, prompt: string) => {
-  const res = await fetch('http://127.0.0.1:8000/ai/' + splitNum + '/' + step + '/' + prompt)
+  const res = await fetch('http://172.31.40.18:8000/ai/' + splitNum + '/' + step + '/' + prompt)
   return res.json()
 }
 type CreateImageResponse = {
