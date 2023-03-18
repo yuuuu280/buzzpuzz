@@ -101,7 +101,7 @@ function Ai({ splitNum, step, prompt }: AiProps) {
     return <span>Error</span>
   }
   if (fieldInfo === null) {
-    // pythonを2次元配列にしたらここはいらなくなる
+    //pythonを2次元配列にしたらここはいらなくなる
     const fieldInfo = Array.from({ length: splitNum * splitNum }, (_, i) => {
       const point = data.answer.indexOf(i)
       return {
