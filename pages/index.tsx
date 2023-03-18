@@ -61,7 +61,7 @@ const Home: NextPage = () => {
       <div className={styles.footer}>
         <p>
           このアプリは
-          <a href="https://twitter.com/yuuuu2801" target="_blank">
+          <a href="https://twitter.com/yuuuu2801" target="_blank" rel="noopener noreferrer">
             @yuuuu2801
           </a>
           が作りました
