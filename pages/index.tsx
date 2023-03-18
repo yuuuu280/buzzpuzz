@@ -38,7 +38,7 @@ const Home: NextPage = () => {
           >
             <MenuItem value="3">😺３×３</MenuItem>
             <MenuItem value="4">🦁４×４</MenuItem>
-            <MenuItem value="5">👹５×５</MenuItem>
+            <MenuItem value="5">👹５×５（PC環境推奨）</MenuItem>
           </Select>
         </FormControl>
         {/* <select
@@ -54,12 +54,18 @@ const Home: NextPage = () => {
           <option value="5">👹５×５</option>
         </select> */}
         <p></p>
-        <a href={'/cat?num=' + splitNum}>猫好きはこちら</a>
+        <a href={'/cat?num=' + splitNum}>Play with 👉Cats</a>
         <p></p>
-        <a href={'/option?num=' + splitNum}>AI好きはこちら</a>
+        <a href={'/option?num=' + splitNum}>Play with 👉AI</a>
       </div>
       <div className={styles.footer}>
-        <p>このアプリは@yuuuu280が作りました</p>
+        <p>
+          このアプリは
+          <a href="https://twitter.com/yuuuu2801" target="_blank">
+            @yuuuu2801
+          </a>
+          が作りました
+        </p>
       </div>
     </div>
   )

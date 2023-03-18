@@ -7,6 +7,7 @@ import LoopAnimation from './LoopAnimation'
 import loadJson from 'public/animation/lf20_xvec7y03.json'
 import { css } from '@emotion/react'
 import { gsap } from 'gsap'
+import { relative } from 'path'
 
 export const toBlob = (base64: string) => {
   var bin = atob(base64.replace(/^.*,/, ''))
@@ -88,7 +89,7 @@ function Cat({ splitNum }: { splitNum: number }) {
   if (isLoading) {
     return (
       <div className={styles.load}>
-        <div css={css({ width: '300px' })}>
+        <div>
           <LoopAnimation json={loadJson}></LoopAnimation>
         </div>
         <h2>パズル作成中.....</h2>
@@ -155,7 +156,7 @@ function Cat({ splitNum }: { splitNum: number }) {
   const onClickNoHint = () => {
     setHint(false)
   }
-  const pieceSize = window.parent.screen.width > 610 ? 450 / splitNum : (window.parent.screen.width * 0.66) / splitNum
+  const pieceSize = window.parent.screen.width > 610 ? 450 / splitNum : (window.parent.screen.width * 0.85) / splitNum
 
   return (
     <div className={styles.container}>
@@ -164,7 +165,7 @@ function Cat({ splitNum }: { splitNum: number }) {
           <button onClick={() => onClickHint()} className={`ui button ${isHint && 'positive active'}`}>
             表示
           </button>
-          <div className="or" data-text="hint"></div>
+          <div className="or" data-text="👈"></div>
           <button onClick={() => onClickNoHint()} className={`ui button ${!isHint && 'positive active'}`}>
             非表示
           </button>

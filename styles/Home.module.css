@@ -52,6 +52,12 @@
   border: 3px solid black;
   padding: 30px;
 }
+.top a{
+  color: rgb(96, 21, 116);
+}
+.top a:hover{
+  color: rgb(88, 22, 113);
+}
 .title{
   display: block;
   text-align: center;
@@ -74,13 +80,14 @@
   pointer-events: none;
 }
 .load{
+  width: 200px;
+  margin: auto;
   color:#444;
   text-align: center;
 }
 .footer {
   padding-top: 50px;
 }
-
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
@@ -105,22 +112,32 @@
 
 /* Mobile */
 @media (max-width: 610px) {
+  .main{
+    background-image: url("../public/back_img_phone.png");
+    min-height: 0vh;
+  }
   .container{
-    width: 80vw;
+    width: 95vw;
+    padding-left: 4vw;
+  }
+  .container span{
+    padding-left: 7vw;
   }
   .selectPrompt{
-    font-size: 11px;
-    width:55vw;
+    font-size: 18px;
+    width:70vw;
+  }
+  .option{
+    font-size: 18px;
   }
   .option Form{
-    width:55vw;
+    width:70vw;
   }
   .clear h1{
-    font-size: 16px;
+    font-size: 18px;
   }
-
   .clear img{
-    width:55vw;
+    width:85vw;
     height:auto;
   }
 }

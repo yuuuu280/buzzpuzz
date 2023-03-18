@@ -31,9 +31,14 @@ const Home: NextPage = () => {
         <img src={'/logo.png'} width={'300'} height={'50'} />
       </Link>
       <div className={`${styles.container} ${styles.clear}`}>
-        <h1>クリアおめでとう！！！</h1>
-        <h1>是非保存してシェアしてみてね</h1>
-        <div>
+        クリアおめでとうございます。完成した画像は保存できます。 <div></div>
+        Congratulazioni per la compensazione. Puoi salvare l'immagine finita. <div></div>
+        클리어 축하합니다. 완성된 이미지를 저장할 수 있습니다. <div></div>
+        Congratulations on clearing. You can save the finished image. <div></div>
+        恭喜通关。您可以保存完成的图像。 <div></div>
+        Felicitaciones por despejar. Puede guardar la imagen terminada.
+        <p></p>
+        {/* <div>
           <a
             href="https://twitter.com/share?ref_src=twsrc%5Etfw"
             className="twitter-share-button"
@@ -44,7 +49,7 @@ const Home: NextPage = () => {
             Tweet
           </a>
           <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
-        </div>
+        </div> */}
         <div style={{ opacity: 1 }}>
           <img
             ref={bounce}

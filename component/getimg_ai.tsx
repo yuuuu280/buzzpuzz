@@ -87,7 +87,7 @@ function Ai({ splitNum, step, prompt }: AiProps) {
   if (isLoading) {
     return (
       <div className={styles.load}>
-        <div css={css({ width: '300px' })}>
+        <div>
           <LoopAnimation json={loadJson}></LoopAnimation>
         </div>
         <h2>パズル作成中.....</h2>
@@ -155,7 +155,7 @@ function Ai({ splitNum, step, prompt }: AiProps) {
   const onClickNoHint = () => {
     setHint(false)
   }
-  const pieceSize = window.parent.screen.width > 610 ? 450 / splitNum : (window.parent.screen.width * 0.66) / splitNum
+  const pieceSize = window.parent.screen.width > 610 ? 450 / splitNum : (window.parent.screen.width * 0.85) / splitNum
 
   return (
     <div className={styles.container}>
