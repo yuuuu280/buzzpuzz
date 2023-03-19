@@ -18,9 +18,6 @@ const queryClient = new QueryClient()
 const Home: NextPage = () => {
   const router = useRouter()
   const num = router.query.num
-  if (num === undefined) {
-    return <div></div>
-  }
   if (!(Number(num) < 10 && Number(num) > 0)) {
     return (
       <div className={styles.main}>
@@ -29,7 +26,6 @@ const Home: NextPage = () => {
             <img src={'/logo.png'} width={'300'} height={'50'} />
           </Link>
         </div>
-        <h1>難易度を選択画面から選択してね！！</h1>
       </div>
     )
   }

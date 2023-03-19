@@ -21,6 +21,18 @@ const Home: NextPage = () => {
   if (num === undefined || step === undefined || typeof prompt !== 'string') {
     return <p>Error</p>
   }
+
+  if (!(Number(num) < 10 && Number(num) > 0)) {
+    return (
+      <div className={styles.main}>
+        <div>
+          <Link className={styles.title} href="/">
+            <img src={'/logo.png'} width={'300'} height={'50'} />
+          </Link>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className={styles.main}>
       <QueryClientProvider client={queryClient}>

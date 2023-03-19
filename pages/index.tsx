@@ -18,8 +18,23 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Home: NextPage = () => {
   const [splitNum, setSplitNum] = useState<string>()
+  const [isvali, setIsvali] = useState<boolean>(false)
   const handleChange = (event: SelectChangeEvent) => {
     setSplitNum(event.target.value as string)
+  }
+  const validate_cat = (splitNum: string) => {
+    if (splitNum === undefined) {
+      setIsvali(true)
+      return
+    }
+    window.location.href = '/cat?num=' + splitNum
+  }
+  const validate_ai = (splitNum: string) => {
+    if (splitNum === undefined) {
+      setIsvali(true)
+      return
+    }
+    window.location.href = '/option?num=' + splitNum
   }
   return (
     <div className={styles.main}>
@@ -27,6 +42,8 @@ const Home: NextPage = () => {
         <img src={'/logo.png'} width={'300'} height={'50'} />
       </Link>
       <div className={styles.top}>
+        {isvali && <p className={styles.vali}>※難易度を設定してください</p>}
+
         <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">難易度</InputLabel>
           <Select
@@ -41,22 +58,10 @@ const Home: NextPage = () => {
             <MenuItem value="5">👹５×５（PC環境推奨）</MenuItem>
           </Select>
         </FormControl>
-        {/* <select
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setSplitNum(Number(e.target.value))
-          }}
-          className="ui vertical buttons"
-          name=""
-          id=""
-        >
-          <option value="3">😺３×３</option>
-          <option value="4">🦁４×４</option>
-          <option value="5">👹５×５</option>
-        </select> */}
         <p></p>
-        <a href={'/cat?num=' + splitNum}>Play with 👉Cats</a>
+        <button onClick={() => validate_cat(splitNum)}>Play with 👉Cats</button>
         <p></p>
-        <a href={'/option?num=' + splitNum}>Play with 👉AI</a>
+        <button onClick={() => validate_ai(splitNum)}>Play with 👉AI</button>
       </div>
       <div className={styles.footer}>
         <p>

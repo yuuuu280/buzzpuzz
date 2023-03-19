@@ -17,10 +17,14 @@
   color:#444;
   font-size: 20px;
 }
-.top a{
-  text-align: center;
+.top button{
+  font-weight:bold;
+  color: rgb(96, 21, 116);
+  cursor: pointer;
+  border: none;
+  background: none;
 }
-.top a:hover{
+.top button:hover{
   font-size: 19px;
 }
 .option{
@@ -52,12 +56,6 @@
   border: 3px solid black;
   padding: 30px;
 }
-.top a{
-  color: rgb(96, 21, 116);
-}
-.top a:hover{
-  color: rgb(88, 22, 113);
-}
 .title{
   display: block;
   text-align: center;
@@ -67,7 +65,10 @@
 .box {
   position: relative;
 }
-
+.vali{
+  font-size: 14px;
+  color: rgb(202, 35, 35);
+}
 .hint {
   opacity: 0.6;
   background-color: white;
