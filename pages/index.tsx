@@ -37,42 +37,49 @@ const Home: NextPage = () => {
     window.location.href = '/option?num=' + splitNum
   }
   return (
-    <div className={styles.main}>
-      <Link className={styles.title} href="/">
-        <img src={'/logo.png'} width={'300'} height={'50'} />
-      </Link>
-      <div className={styles.top}>
-        {isvali && <p className={styles.vali}>※難易度を設定してください</p>}
+    <>
+      <head>
+        <meta property="og:title" content="バズパズ" />
+        <meta property="og:description" content="バズパズで遊んでみよう" />
+        <meta property="og:image" content="public/ogp.png" />
+      </head>
+      <div className={styles.main}>
+        <Link className={styles.title} href="/">
+          <img src={'/logo.png'} width={'300'} height={'50'} />
+        </Link>
+        <div className={styles.top}>
+          {isvali && <p className={styles.vali}>※難易度を設定してください</p>}
 
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">難易度</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={splitNum}
-            label="Age"
-            onChange={handleChange}
-          >
-            <MenuItem value="3">😺３×３</MenuItem>
-            <MenuItem value="4">🦁４×４</MenuItem>
-            <MenuItem value="5">👹５×５（PC環境推奨）</MenuItem>
-          </Select>
-        </FormControl>
-        <p></p>
-        <button onClick={() => validate_cat(splitNum)}>Play with 👉Cats</button>
-        <p></p>
-        <button onClick={() => validate_ai(splitNum)}>Play with 👉AI</button>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">難易度</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={splitNum}
+              label="Age"
+              onChange={handleChange}
+            >
+              <MenuItem value="3">😺３×３</MenuItem>
+              <MenuItem value="4">🦁４×４</MenuItem>
+              <MenuItem value="5">👹５×５（PC環境推奨）</MenuItem>
+            </Select>
+          </FormControl>
+          <p></p>
+          <button onClick={() => validate_cat(splitNum)}>Play with 👉Cats</button>
+          <p></p>
+          <button onClick={() => validate_ai(splitNum)}>Play with 👉AI</button>
+        </div>
+        <div className={styles.footer}>
+          <p>
+            このアプリは
+            <a href="https://twitter.com/yuuuu2801" target="_blank" rel="noopener noreferrer">
+              @yuuuu2801
+            </a>
+            が作りました
+          </p>
+        </div>
       </div>
-      <div className={styles.footer}>
-        <p>
-          このアプリは
-          <a href="https://twitter.com/yuuuu2801" target="_blank" rel="noopener noreferrer">
-            @yuuuu2801
-          </a>
-          が作りました
-        </p>
-      </div>
-    </div>
+    </>
   )
 }
 export default Home
