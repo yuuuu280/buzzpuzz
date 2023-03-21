@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   const [splitNum, setSplitNum] = useState<number>(3)
   const router = useRouter()
   const num = router.query.num
-  const [prompt, setPrompt] = useState('')
+  const [prompt, setPrompt] = useState(promptOptions.at(0)?.prompt || '')
   const [quartiy, setQuarity] = useState(quarityOptions[0].value)
   if (num === undefined) {
     return <div></div>
@@ -67,7 +67,13 @@ const Home: NextPage = () => {
         </div>
 
         <Form>
-          <TextArea placeholder={prompt} />
+          <TextareaControl
+            placeholder="タップして記述"
+            initValue={prompt || ''}
+            onChange={(value) => {
+              setPrompt(String(value))
+            }}
+          />
         </Form>
         <p></p>
         <a href={'/ai?num=' + num + '&step=' + quartiy + '&prompt=' + prompt}>

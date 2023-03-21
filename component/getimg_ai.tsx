@@ -33,6 +33,9 @@ const fetchPython = async (splitNum: number, step: number, prompt: string) => {
   )
   return res.json()
 }
+interface TimerProps {
+  startTime: number
+}
 type CreateImageResponse = {
   original: string
   answer: number[]
@@ -53,6 +56,26 @@ const checkAnswer = (fieldInfo: { x: number; y: number }[], splitNum: number) =>
   }
 
   return true
+}
+const Timer: React.FC<TimerProps> = ({ startTime }) => {
+  const [elapsedTime, setElapsedTime] = useState<number>(0)
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const diff = Math.floor((Date.now() - startTime) / 1000)
+      setElapsedTime(diff)
+    }, 1000)
+
+    return () => clearInterval(intervalId)
+  }, [startTime])
+  if (elapsedTime > 59) {
+    return (
+      <p>
+        {Math.floor(elapsedTime / 60)}分{elapsedTime % 60}秒
+      </p>
+    )
+  }
+  return <p>{elapsedTime}秒</p>
 }
 type AiProps = { splitNum: number; step: number; prompt: string }
 
@@ -98,6 +121,13 @@ function Ai({ splitNum, step, prompt }: AiProps) {
           <LoopAnimation json={loadJson}></LoopAnimation>
         </div>
         <h2>パズル作成中.....</h2>
+        <span
+          style={{
+            fontSize: '24px'
+          }}
+        >
+          <Timer startTime={Date.now()} />
+        </span>
       </div>
     )
   }

@@ -37,8 +37,13 @@ type PromptOptions = {
 
 export const promptOptions: PromptOptions = [
   {
+    label: '自分で書く',
+    prompt: ''
+  },
+  {
     label: 'いい感じなイラスト:女性',
-    prompt: `blush, glossy <js-hair> hair, gemstone <js-eyes> anime eyes, look at viewer, highres, waifu, extremely detailed CG, <js-art>, unity, 8k, wallpaper, beautiful, full frame, crisp detail<--waifu>`,
+    prompt: `((masterpiece,best quality)),1girl, solo, animal ears, rabbit, barefoot, knees up, dress, sitting, rabbit ears, short sleeves, looking at viewer, grass, short hair, smile, white hair, puffy sleeves, outdoors, puffy short sleeves, bangs, on ground, full body, animal, white dress, sunlight, brown eyes, dappled sunlight, day, depth of field`,
+    // prompt: `blush, glossy <js-hair> hair, gemstone <js-eyes> anime eyes, look at viewer, highres, waifu, extremely detailed CG, <js-art>, unity, 8k, wallpaper, beautiful, full frame, crisp detail<--waifu>`,
     selectReplaceOptions: [
       {
         originString: '<js-art>',
@@ -115,9 +120,5 @@ export const promptOptions: PromptOptions = [
     label: 'サイバーパンクな戦争',
     prompt:
       'Cyberpunk world war 3, cinematic composition, a fantasy digital painting by greg rutkowski and james gurney, trending on artstation, highly detailed, hyperrealistic, realistic, photorealistic, dynamic lighting, highly detailed, cinematic landscape, studio landscape, studio lighting'
-  },
-  {
-    label: '一から文章を書く',
-    prompt: ''
   }
 ]
