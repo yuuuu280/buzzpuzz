@@ -64,7 +64,7 @@ async def hello(num_str, prompt, step_str):
         "answer": ""
         }
     # アクセストークンの設定
-    access_tokens="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" # @param {type:"string"}
+    access_tokens="" # @param {type:"string"}
     # モデルのインスタンス化
     model = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", use_auth_token=access_tokens)
     images=[]

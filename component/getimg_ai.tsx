@@ -23,14 +23,7 @@ export const toBlob = (base64: string) => {
 }
 
 const fetchPython = async (splitNum: number, step: number, prompt: string) => {
-  const res = await fetch(
-    'https://ehprjjpu3wsmdel3uzu6fjvat40qtahn.lambda-url.ap-northeast-1.on.aws/?num_str=' +
-      splitNum +
-      '&step_str=' +
-      step +
-      '&prompt=' +
-      prompt
-  )
+  const res = await fetch('関数URL?num_str=' + splitNum + '&step_str=' + step + '&prompt=' + prompt)
   return res.json()
 }
 interface TimerProps {

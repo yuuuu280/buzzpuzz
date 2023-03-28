@@ -32,11 +32,13 @@ const Home: NextPage = () => {
 
   return (
     <div className={styles.main}>
-      <Link className={styles.title} href="/">
-        <img src={'/logo.png'} width={'300'} height={'50'} />
-      </Link>
       <QueryClientProvider client={queryClient}>
-        <Cat splitNum={Number(num)} />
+        <div>
+          <Link className={styles.title} href="/">
+            <img src={'/logo.png'} width={'300'} height={'50'} />
+          </Link>
+          <Cat splitNum={Number(num)} />
+        </div>
       </QueryClientProvider>
     </div>
   )

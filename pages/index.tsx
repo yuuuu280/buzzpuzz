@@ -38,18 +38,17 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <head>
+      <Head>
         <meta property="og:title" content="バズパズ" />
         <meta property="og:description" content="バズパズで遊んでみよう" />
-        <meta property="og:image" content="public/ogp.png" />
-      </head>
+        <meta property="og:image" content="/ogp.png" />
+      </Head>
       <div className={styles.main}>
         <Link className={styles.title} href="/">
           <img src={'/logo.png'} width={'300'} height={'50'} />
         </Link>
         <div className={styles.top}>
           {isvali && <p className={styles.vali}>※難易度を設定してください</p>}
-
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">難易度</InputLabel>
             <Select
@@ -65,9 +64,9 @@ const Home: NextPage = () => {
             </Select>
           </FormControl>
           <p></p>
-          <button onClick={() => validate_cat(splitNum)}>Play with 👉Cats</button>
+          <button onClick={() => validate_cat(splitNum)}>ランダムパズル（プレイ画面へ）</button>
           <p></p>
-          <button onClick={() => validate_ai(splitNum)}>Play with 👉AI</button>
+          <button onClick={() => validate_ai(splitNum)}>AIで作ったパズル（設定画面へ）</button>
         </div>
         <div className={styles.footer}>
           <p>

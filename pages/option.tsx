@@ -77,7 +77,7 @@ const Home: NextPage = () => {
         </Form>
         <p></p>
         <a href={'/ai?num=' + num + '&step=' + quartiy + '&prompt=' + prompt}>
-          <button className="positive ui button">▶︎スタート</button>
+          <button className="positive ui button">▶︎プレイ画面へ</button>
         </a>
       </div>
     </div>

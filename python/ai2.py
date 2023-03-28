@@ -78,7 +78,7 @@ async def hello(num_str, prompt, step_str):
         "answer": ""
         }
     #画像の読み込み
-    url = 'https://awvfhonb66dxnj4xe62ufvybby0smiiv.lambda-url.ap-northeast-1.on.aws/'
+    url = '関数URL'
     res = requests.post(url, json={'imgNum': 1, 'prompt': prompt, 'negativePrompt': "", 'step':step, "skipSafetyChecker": True})
     data = res.json()[0]
     img_data = base64.b64decode(data.replace("data:image/png;base64,",""))
